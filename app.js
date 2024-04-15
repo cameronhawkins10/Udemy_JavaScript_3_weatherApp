@@ -8,13 +8,17 @@ const updateUI = (data) => {
     //destructure properties 
     const {cityDets, weather} = data;
 
+    // Convert Celsius to Fahrenheit
+    const temperatureInCelsius = weather.Temperature.Metric.Value;
+    const temperatureInFahrenheit = (temperatureInCelsius * 9/5) + 32;
+
     //update details template
     details.innerHTML = `
     <h5 class="my-3">${cityDets.EnglishName}</h5>
         <div class="my-3">${weather.WeatherText}</div>
         <div class="display-4 my-4">
-            <span>${weather.Temperature.Metric.Value}</span>
-            <span>&deg;C</span>
+            <span>${temperatureInFahrenheit.toFixed(1)}</span> <!-- Rounded to one decimal place -->
+            <span>&deg;F</span>
         </div>
     `;
     // update the night/day & icon images
